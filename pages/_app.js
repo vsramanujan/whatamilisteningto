@@ -1,7 +1,17 @@
-import '../styles/index.css'
+import '../styles/global/index.css'
+import '../styles/global/custom.css'
+import '../styles/global/darkModeSwitch.css'
+import Layout from "../components/Layout"
+import { ThemeProvider } from 'next-themes'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider attribute="class">
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ThemeProvider>
+  )
 }
 
 export default MyApp
