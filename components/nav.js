@@ -26,24 +26,22 @@ export default function Nav() {
           <div />
         </button>
       </div>
-      {/* <ul className="flex items-center justify-between p-8">
-        <li>
-          <Link href="/">
-            <a className="text-blue-500 no-underline text-accent-1 dark:text-blue-300">
+      <ul className="flex">
+        {/* <li>
+          <Link href="/ ">
+            <a className=" text-gray-800 dark:text-purple-300 uppercase opacity-80 tracking-wide text-sm border p-2 rounded-lg dark:border-gray-400 shadow-lg border-gray-400 mr-2" >
               Home
             </a>
           </Link>
+        </li> */}
+        <li>
+          <Link href="/top-tracks">
+            <a className=" text-gray-800 dark:text-purple-300 uppercase opacity-80 tracking-wide text-sm border p-2 rounded-lg dark:border-gray-400 shadow-lg border-gray-400" >
+              Top Tracks
+            </a>
+          </Link>
         </li>
-        <ul className="flex items-center justify-between space-x-4">
-          {links.map(({ href, label }) => (
-            <li key={`${href}${label}`}>
-              <a href={href} className="no-underline btn-blue">
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </ul> */}
-    </nav>
+      </ul>
+    </nav >
   )
 }

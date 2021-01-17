@@ -16,11 +16,15 @@ body {
 
 .layout-parent {
   max-width: 1080px;
-  margin-top: calc(50vh - 10rem);
+  min-height: calc(100vh - 10rem);
 }
 
 #__next {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.sm-spotify-art {
+  box-shadow: 0px 5px 999px -50px rgb(209, 213, 219);
 }

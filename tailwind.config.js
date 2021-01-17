@@ -7,10 +7,17 @@ module.exports = {
         'accent-1': '#333',
         'spotify-green': 'rgb(123, 200, 105)'
       },
+      boxShadow: {
+        white: '0 4px 14px 0 rgba(255, 255, 255, 0.39)',
+      }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      fontWeight: ['dark']
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-textshadow')
+  ],
 }

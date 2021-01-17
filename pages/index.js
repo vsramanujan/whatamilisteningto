@@ -1,6 +1,6 @@
-import { getNowPlaying } from "../lib/spotify"
 import { NextSeo } from 'next-seo'
-import SpotifyGreen from "../components/svg/SpotifyGreen"
+import useSWR from 'swr'
+import { useState } from "react"
 
 const TITLE = "What is Ram listening to?"
 const DESCRIPTION = "Snoop on what Ram is listening to on Spotify (instead of working)"
@@ -16,68 +16,60 @@ function SEO() {
   />
 }
 
-export default function IndexPage({ nowPlaying, nowPlayingError }) {
-  console.log("@@@", nowPlaying, nowPlayingError)
+export default function IndexPage() {
+  const { data } = useSWR('/api/nowPlaying', url => fetch(url).then(res => res.json()))
+  const loading = !data
 
-  if (!nowPlaying || nowPlayingError) {
-    // if (true) {
+  if (loading) {
+    return null
+  }
+
+  if (data?.error) {
     return <>
       <SEO />
-      <h1 className="text-5xl text-center dark:text-spotify-green tracking-tight font-bold">
+      <h1 className="text-5xl text-center dark:text-purple-500 tracking-tight font-bold">
         Ah fuck. Something is amiss.
       </h1>
     </>
   }
 
-  const { item } = nowPlaying
-  const isPlaying = nowPlaying?.is_playing;
-  const title = item?.name;
-  const artist = Array.isArray(item?.artists) ? item.artists.map(_artist => _artist.name).join(', ') : 'Spotify';
-  const album = item?.album?.name;
-  const albumImageUrl = item?.album?.images?.[0]?.url;
-  const songUrl = item?.external_urls?.spotify;
-
   return (
     <>
       <SEO />
-      <div className="border dark:border-green-700 border-gray-800 rounded-3xl p-4 flex md:flex-row sm:flex-col">
-        <img src={albumImageUrl} className="h-32 w-32 rounded-3xl" />
-        <div className="flex flex-col ml-4">
-          <h1 className="text-5xl text-gray-700 dark:text-green-500 tracking-tight font-bold ">
-            {title}
-          </h1>
-          <h2 className="text-3xl text-gray-700 dark:text-spotify-green tracking-tight font-bold mt-2 ">
-            {artist}
-          </h2>
-          <h3 className="text-2xl text-gray-700 dark:text-green-100 tracking-tight font-bold mt-2 ">
-            {album}
-          </h3>
-        </div>
-        <div className="ml-auto self-center">
-          <SpotifyGreen />
-        </div>
-      </div>
+      <SpotifySong {...(data || {})} />
     </>
   )
 }
 
 
-export async function getServerSideProps() {
+function SpotifySong({
+  isPlaying, title, artists = [], albumImage, songUrl, noSong
+}) {
+  if (noSong) {
+    return (
+      <h1 className="text-5xl text-center dark:text-purple-500 tracking-tight font-bold">
+        Ram isn't listening to music right now.
+      </h1>
+    )
+  }
+  return (
+    <section className="flex flex-col justify-between">
+      <h2 className="self-center dark:text-gray-300 text-gray-600 dark:font-light text-xl tracking-wide">Now Playing</h2>
+      <img alt="album cover" src={albumImage} className='w-72 h-72 rounded-3xl object-fill mt-8 border dark:border-gray-400 sm-spotify-art self-center' />
+      <a className="self-center dark:text-purple-400 text-gray-700 font-semibold text-3xl tracking-wide text-center mt-8" href={songUrl} rel="noopener noreferrer" target="_blank">{title}</a>
+      <span className="self-center text-center">{artists.map((artist, index) => <><a tabIndex={0} className="dark:text-purple-100 text-gray-600 text-lg tracking-wide mt-2 opacity-50 font-light" href={artist.external_urls.spotify} rel="noopener noreferrer" target="_blank">{artist.name}</a>{shouldHaveComma(artists, index)}</>)}</span>
+    </section>
+  )
+}
 
-  try {
-    const nowPlaying = await getNowPlaying()
-    return {
-      props: {
-        nowPlaying
-      }
-    }
-  } catch ({ message, stack }) {
-    return {
-      props: {
-        nowPlaying: null,
-        nowPlayingError: { message, stack }
-      }
-    }
+
+function shouldHaveComma(list, index) {
+  if (list.length === 1) {
+    return null
+  }
+  if (index === list.length - 1) {
+    return null
   }
 
+  return <span className="opacity-50">,{" "}</span>
 }
