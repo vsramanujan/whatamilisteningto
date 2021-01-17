@@ -1,7 +1,7 @@
-import '../styles/global/index.css'
-import '../styles/global/custom.css'
-import '../styles/global/darkModeSwitch.css'
-import Layout from "../components/Layout"
+import '@/styles/global/index.css'
+import '@/styles/global/custom.css'
+import '@/styles/global/darkModeSwitch.css'
+import Layout from "@/components/Layout"
 import { ThemeProvider } from 'next-themes'
 
 function MyApp({ Component, pageProps }) {

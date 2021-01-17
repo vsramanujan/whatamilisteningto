@@ -1,6 +1,5 @@
 import { NextSeo } from 'next-seo'
 import useSWR from 'swr'
-import { useState } from "react"
 
 const TITLE = "What is Ram listening to?"
 const DESCRIPTION = "Snoop on what Ram is listening to on Spotify (instead of working)"
