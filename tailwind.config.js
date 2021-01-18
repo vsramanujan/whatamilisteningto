@@ -19,7 +19,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      fontWeight: ['dark']
+      fontWeight: ['dark'],
+      borderWidth: ['last'],
     },
   },
   plugins: [

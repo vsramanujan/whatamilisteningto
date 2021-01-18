@@ -26,7 +26,7 @@ export default function IndexPage() {
   if (data?.error) {
     return <>
       <SEO />
-      <h1 className="text-5xl text-center dark:text-purple-500 tracking-tight font-bold">
+      <h1 className="something-aint-right-message">
         Ah fuck. Something is amiss.
       </h1>
     </>
@@ -46,7 +46,7 @@ function SpotifySong({
 }) {
   if (noSong) {
     return (
-      <h1 className="text-5xl text-center dark:text-purple-500 tracking-tight font-bold">
+      <h1 className="something-aint-right-message">
         Ram isn't listening to music right now.
       </h1>
     )

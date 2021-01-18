@@ -1,6 +1,7 @@
 import { useTheme } from "next-themes"
 import Link from 'next/link'
 import { useState } from "react"
+import { useRouter } from 'next/router'
 
 const links = [
   { href: 'https://github.com/vercel/next.js', label: 'GitHub' },
@@ -11,6 +12,9 @@ export default function Nav() {
 
   const { theme, setTheme } = useTheme()
   const [checked, setChecked] = useState(theme === 'light')
+  const { route } = useRouter()
+
+  const addSelectedNavClass = (selfVal) => selfVal === route ? 'nav-element--selected' : ''
 
   return (
     <nav className="flex justify-between items-center w-full p-8 pt-0 mx-auto bg-opacity-60 h-32">
@@ -27,16 +31,16 @@ export default function Nav() {
         </button>
       </div>
       <ul className="flex">
-        {/* <li>
+        <li>
           <Link href="/ ">
-            <a className=" text-gray-800 dark:text-purple-300 uppercase opacity-80 tracking-wide text-sm border p-2 rounded-lg dark:border-gray-400 shadow-lg border-gray-400 mr-2" >
+            <a className={`nav-element mr-2 ${addSelectedNavClass('/')}`} >
               Home
             </a>
           </Link>
-        </li> */}
+        </li>
         <li>
           <Link href="/top-tracks">
-            <a className=" text-gray-800 dark:text-purple-300 uppercase opacity-80 tracking-wide text-sm border p-2 rounded-lg dark:border-gray-400 shadow-lg border-gray-400" >
+            <a className={`nav-element ${addSelectedNavClass('/top-tracks')}`} >
               Top Tracks
             </a>
           </Link>
