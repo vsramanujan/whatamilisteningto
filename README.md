@@ -1,30 +1,17 @@
-# Tailwind CSS example
+# What song am I listening to?
 
-This example is a basic starting point for using [Tailwind CSS](https://tailwindcss.com) with Next.js.
+What songs have I been listening to? [Go here to find out!](https://whatisramcurrentlylisteningto.vsramanujan.vercel.app/)
 
-## Deploy your own
+## Built using
 
-Deploy the example using [Vercel](https://vercel.com):
+  - NextJS
+  - Tailwind
+  - Spotify API
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+Deployed using [Vercel](https://vercel.com)
 
-## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+## Demo
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+<img width="1680" alt="Screenshot 2021-01-18 at 5 36 26 PM" src="https://user-images.githubusercontent.com/25174717/104913513-b70c8080-59b3-11eb-99dc-4721a6d88815.png">
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-## Notes
-
-This example includes the following [PostCSS](https://github.com/postcss/postcss) plugins:
-
-- [tailwindcss](https://tailwindcss.com) - utility-first CSS framework
-- [autoprefixer](https://github.com/postcss/autoprefixer) - plugin to parse CSS and add vendor prefixes to CSS rules using values from [Can I Use](https://caniuse.com).
-
-To control the generated stylesheet's filesize, this example uses Tailwind CSS' [`purge` option](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) to remove unused CSS.
