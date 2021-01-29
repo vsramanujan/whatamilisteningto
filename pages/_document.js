@@ -13,6 +13,7 @@ class CustomDocument extends Document {
             type="font/woff2"
             crossOrigin="anonyomous"
           />
+          <link rel="shortcut icon" href="/static/favicon.png" />
         </Head>
         <body className="bg-white dark:bg-black text-gray-800 dark:text-white transition-colors duration-500">
           <Main />
